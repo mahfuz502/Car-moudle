@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Search Filter -->
+    <record id="car_search_view" model="ir.ui.view">
+        <field name="name">Cars Search</field>
+        <field name="model">car.car</field>
+        <field name="arch" type="xml">
+            <search string="Car Search">
+                <!--group-->
+                <!--                <group expand="1" string="Group by .. ">-->
+                <!--                    <filter name="filter_3" string="Name" domain="[]" context="{'group_by': 'name'}"/>-->
+                <!--                </group>-->
+                <!--Filter-->
+                <filter string="My First Filter" name="filter_1" domain="[('door_number', '=', 2)]"/>
+                <filter string="My Second Filter" name="filter_2" domain="[('door_number', '&gt;=', 2)]"/>
+                <searchpanel>
+                    <field name="driver_id" icon="fa-users"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+
+    <!-- Form View -->
+    <record id="my_model_name_form_view" model="ir.ui.view">
+        <field name="name">Cars</field>
+        <field name="model">car.car</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
+
+                    <header>
+                        <field name="status" widget="statusbar"/>
+                        <button name="%(aaa_first_module.car_wizard_action)d" type="action"
+                                string="Update Horse Power"/>
+                        <button name="set_car_to_used" string="Set Car Used" type="object" class="oe_highlight"
+                                attrs="{'invisible':[('status','!=','new')]}"/>
+                        <button name="set_car_to_sold" string="Set Car Sold" type="object" class="oe_highlight"
+                                attrs="{'invisible':[('status','!=','used')]}"/>
+                    </header>
+                    <widget name="web_ribbon" text="New" bg_colour="bg-danger"
+                            attrs="{'invisible':[('status','!=','new')]}"/>
+                    <widget name="web_ribbon" text="Sold" bg_colour="bg-success"
+                            attrs="{'invisible':[('status','!=','sold')]}"/>
+
+
+                    <group>
+                        <group>
+                            <field name="car_sequence" readonly="1"/>
+                            <field name="name"/>
+                            <field name="horse_power"/>
+                            <field name="door_number"/>
+                            <field name="driver_id"/>
+                            <field name="parking_id"/>
+                            <field name="feature_ids" widget="many2many_tags"/>
+                            <field name="total_speed"/>
+                            <field name="random_message"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Tree View -->
+    <record id="my_model_name_tree_view" model="ir.ui.view">
+        <field name="name">Cars</field>
+        <field name="model">car.car</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="horse_power"/>
+                <field name="door_number"/>
+                <field name="driver_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="open_view_car_action" model="ir.actions.act_window">
+        <field name="name">Cars</field>
+        <field name="res_model">car.car</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="domain">[]</field>
+        <field name="context">{"search_default_filter_1":1, "search_default_filter_3":1}</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_id" ref="my_model_name_tree_view"/>
+    </record>
+
+</odoo>

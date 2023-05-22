@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Main Menu -->
+        <menuitem name="Cars"
+            id="menu_root"
+            sequence="1" />
+
+
+        <!-- car menu -->
+        <menuitem name="Cars Menu"
+            id="menu_car"
+            parent="aaa_first_module.menu_root"
+            action="open_view_car_action"
+            sequence="2" />
+
+        <!-- car parking-->
+        <menuitem name="Parking"
+            id="menu_parking"
+            parent="aaa_first_module.menu_root"
+            action="open_view_parking_action"
+            sequence="3" />
+
+    </data>
+</odoo>

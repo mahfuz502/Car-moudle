@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="my_model_name_form_view" model="ir.ui.view">
+        <field name="name">Parking</field>
+        <field name="model">parking.parking</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="car_ids"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Tree View -->
+    <record id="parking_tree_view" model="ir.ui.view">
+        <field name="name">Parking</field>
+        <field name="model">parking.parking</field>
+        <field name="arch" type="xml">
+
+            <tree>
+                <field name="name"/>
+            </tree>
+
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="open_view_parking_action" model="ir.actions.act_window">
+        <field name="name">Parking</field>
+        <field name="res_model">parking.parking</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="parking_tree_view"/>
+    </record>
+
+</odoo>
